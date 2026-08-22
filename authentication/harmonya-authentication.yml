@@ -1,0 +1,91 @@
+generated: '2026-08-22'
+method: probed
+source: >-
+  https://harmonya.us.auth0.com/.well-known/openid-configuration (HTTP 200, 2026-08-22) and the
+  build-time environment block in https://app.harmonya.com/assets/fetchMock-VndaR4oo.js
+  (VITE_DOMAIN, VITE_AUDIENCE, VITE_SERVER_URL, VITE_CLIENT_ID).
+summary: >-
+  Harmonya publishes no developer authentication documentation — there is no docs, developer or
+  api subdomain and no auth page on www.harmonya.com. What is recorded here was probed, not read
+  from a reference: the Harmonya tenant application at app.harmonya.com authenticates end users
+  against an Auth0 tenant (harmonya.us.auth0.com) using OAuth 2.0 / OpenID Connect with PKCE, and
+  presents the resulting access token to its own backend at https://app.harmonya.com. The tenant's
+  OIDC discovery document is anonymous and was saved verbatim to
+  well-known/harmonya-openid-configuration.json.
+documented_publicly: false
+docs: null
+identity_provider:
+  vendor: Auth0 (Okta)
+  tenant: harmonya.us.auth0.com
+  issuer: https://harmonya.us.auth0.com/
+  discovery: https://harmonya.us.auth0.com/.well-known/openid-configuration
+schemes:
+- id: auth0_oidc
+  type: openIdConnect
+  scheme: oauth2
+  openIdConnectUrl: https://harmonya.us.auth0.com/.well-known/openid-configuration
+  in: header
+  header: Authorization
+  format: Bearer <JWT access token>
+  audience: https://app.harmonya.com
+  applies_to: >-
+    The Harmonya tenant application backend at https://app.harmonya.com (VITE_SERVER_URL). Not a
+    published API — no reference, no contract, no self-service key issuance.
+  flows:
+    authorization_code:
+      authorizationUrl: https://harmonya.us.auth0.com/authorize
+      tokenUrl: https://harmonya.us.auth0.com/oauth/token
+      pkce: true
+      code_challenge_methods: [S256, plain]
+      public_client: true
+      note: >-
+        The browser SPA uses auth0-spa-js with a public client (VITE_CLIENT_ID present in the
+        bundle, no secret) — the standard Authorization Code + PKCE arrangement.
+    client_credentials:
+      tokenUrl: https://harmonya.us.auth0.com/oauth/token
+      note: >-
+        Advertised in grant_types_supported on the tenant. This is the machine-to-machine grant a
+        customer integration would use, but Harmonya publishes no scope reference, no API
+        reference, and no self-service path to a client_id/secret, so it cannot be exercised
+        without an account and a sales conversation.
+grant_types_supported:
+- client_credentials
+- authorization_code
+- refresh_token
+- password
+- implicit
+- urn:ietf:params:oauth:grant-type:device_code
+- urn:ietf:params:oauth:grant-type:token-exchange
+- urn:ietf:params:oauth:grant-type:jwt-bearer
+token_endpoint_auth_methods_supported:
+- client_secret_basic
+- client_secret_post
+- private_key_jwt
+- none
+id_token_signing_alg_values_supported: [HS256, RS256, PS256]
+scopes_supported:
+- openid
+- profile
+- offline_access
+- email
+- email_verified
+- name
+- given_name
+- family_name
+- nickname
+- picture
+- phone
+- address
+- created_at
+- identities
+scopes_note: >-
+  These are Auth0's default OIDC identity scopes on the tenant's discovery document, not Harmonya
+  API permission scopes. No product scope reference is published, so scopes/ is not written —
+  see the guidance that scopes/ is OAuth-only and must not be filled with an empty artifact.
+mfa:
+  endpoint: https://harmonya.us.auth0.com/mfa/challenge
+  note: Auth0 MFA challenge endpoint is present on the tenant; enrollment policy is not public.
+gaps:
+- No public authentication documentation of any kind.
+- No self-service credential issuance; the only published CTA is https://www.harmonya.com/get-a-demo.
+- No documented API scopes, no token lifetime statement, no rotation guidance.

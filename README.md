@@ -64,5 +64,16 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Harmonya is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Harmonya is a New York- and Tel Aviv-based product intelligence company for consumer packaged
+goods manufacturers and retailers. Founded in 2021, it reads live product listings, pack and label
+copy, manufacturer specs, syndicated feeds and consumer reviews, and turns them into normalized
+product attributes at the UPC level, plus demand themes and consumer-voice signals layered on top.
+
+As of 2026-08-22 Harmonya publishes no public API: no `api.`/`docs.`/`developer.` host resolves,
+the 150-URL sitemap contains no developer page, and no OpenAPI, GraphQL SDL, AsyncAPI, MCP server
+or A2A agent card was found on any Harmonya host. The only programmatic surface is the tenant
+application backend at `app.harmonya.com`, protected by the company's Auth0 tenant; access begins
+with a demo request. See `x-coverage` in `apis.yml` for the probed evidence.
+
+- https://www.harmonya.com/
+- https://app.harmonya.com/

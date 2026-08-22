@@ -1,17 +1,33 @@
 aid: harmonya
 name: Harmonya
-description: 'Harmonya is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Harmonya is a New York- and Tel Aviv-based product intelligence company for consumer packaged
+  goods manufacturers and retailers. Founded in 2021, it reads live product listings, pack and
+  label copy, manufacturer specs, syndicated feeds and consumer reviews, and turns them into
+  normalized product attributes at the UPC level — claims, ingredients, flavors, pack, dietary
+  positioning and measured nutrition values — plus demand themes and consumer-voice signals
+  layered on top. The platform ships as four modules (Demand Intelligence, Consumer Intelligence,
+  Attribute Intelligence and Product Catalog) delivered through a tenant web application at
+  app.harmonya.com and as an enriched product feed into a customer's PIM, data lake and analytics
+  stack. Harmonya publishes no public developer portal, API reference or machine-readable
+  contract; access runs through a sales conversation and an Auth0-protected tenant.
+image: https://cdn.prod.website-files.com/62399ef94090aecdfc702bde/62399ef94090ae5993702bfb_Harmonya_primaryLogo_256.png
 url: https://raw.githubusercontent.com/api-evangelist/harmonya/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-22'
 modified: '2026-08-22'
 tags:
 - Company
+- Product Intelligence
+- Product Data
+- Data Enrichment
+- Consumer Packaged Goods
+- Retail
+- Consumer Insights
+- Retail Media
+- Artificial Intelligence
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +36,52 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.harmonya.com/
+- type: Blog
+  url: https://www.harmonya.com/perspectives
+- type: Support
+  url: mailto:support@harmonya.com
+- type: SignUp
+  url: https://app.harmonya.com/
+- type: TermsOfService
+  url: https://www.harmonya.com/legal/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.harmonya.com/legal/privacy-policy
+- type: OpenIDConnect
+  url: authentication/harmonya-authentication.yml
+- type: DomainSecurity
+  url: security/harmonya-domain-security.yml
+- type: LLMsTxt
+  url: llms/harmonya-llms.txt
+- type: Plans
+  url: plans/harmonya-plans-pricing.yml
+x-enrichment:
+  date: '2026-08-22'
+  status: minimal
+  artifacts_added: 8
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: sales-gate
+  detail: >-
+    Harmonya has a real programmatic surface — the app.harmonya.com tenant backend, protected by
+    its own Auth0 tenant with a client_credentials grant enabled — but publishes no developer
+    portal, reference or spec anywhere: api., docs., developer. and developers.harmonya.com are
+    all NXDOMAIN, the 150-URL sitemap has no developer page, and every commercial path on the
+    site ends at the /get-a-demo form.
+  evidence:
+  - url: https://www.harmonya.com/sitemap.xml
+    status: 200
+  - url: https://www.harmonya.com/openapi.json
+    status: 404
+  - url: https://app.harmonya.com/openapi.json
+    status: 404
+  - url: https://www.harmonya.com/llms.txt
+    status: 404
+  - url: https://www.harmonya.com/.well-known/agent-card.json
+    status: 404
+  - url: https://harmonya.us.auth0.com/.well-known/openid-configuration
+    status: 200
+  - url: https://www.harmonya.com/get-a-demo
+    status: 200
+  checked: '2026-08-22'

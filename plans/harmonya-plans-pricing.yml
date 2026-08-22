@@ -1,0 +1,21 @@
+generated: '2026-08-22'
+method: searched
+source: >-
+  https://www.harmonya.com/sitemap.xml (HTTP 200, 150 URLs, no /pricing or /plans entry) and
+  https://www.harmonya.com/get-a-demo (HTTP 200), the only commercial call to action on the site.
+plan_count: 0
+currency: null
+plans: []
+note: >-
+  Harmonya publishes no pricing page, no plan tiers, no quotas and no overage terms. Every
+  commercial path on www.harmonya.com routes to "Get a Demo" / "Request a Demo", and the Product
+  Catalog module is described only as "Standard or Custom, maintained to your spec" with no
+  attached price. This is an enterprise contact-sales motion, recorded as an honest zero rather
+  than omitted: a buyer cannot self-qualify on cost before a sales conversation.
+evidence:
+- url: https://www.harmonya.com/sitemap.xml
+  status: 200
+  finding: no pricing or plans URL in the sitemap
+- url: https://www.harmonya.com/get-a-demo
+  status: 200
+  finding: demo-request form stands in for a pricing page

@@ -1,0 +1,81 @@
+generated: '2026-08-22'
+method: probed
+source: >-
+  Live unauthenticated GET of each /.well-known/ path on every Harmonya-controlled host found
+  during contract discovery (2026-08-22).
+note: >-
+  Harmonya's own web hosts serve nothing at /.well-known/ — www.harmonya.com (Webflow) answers
+  every path with an "Invalid .well-known request" 404 page, and app.harmonya.com (a Vite SPA on
+  Cloudflare) answers with a 404 carrying the app shell. The only real documents found are on
+  harmonya.us.auth0.com, the company's Auth0 identity tenant, discovered from VITE_DOMAIN in the
+  app.harmonya.com JavaScript bundle. Those are genuine, anonymous, and describe how the Harmonya
+  platform authenticates, so they are recorded and saved verbatim; no WellKnown/APICatalog pointer
+  is emitted, because neither harmonya.com nor app.harmonya.com serves a discovery surface.
+hosts:
+- host: www.harmonya.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: app.harmonya.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: SPA shell returned with the 404 status; not a real document
+  - path: /.well-known/openid-configuration
+    status: 404
+    note: SPA shell returned with the 404 status; not a real document
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    note: SPA shell returned with the 404 status; not a real document
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    note: SPA shell returned with the 404 status; not a real document
+  - path: /.well-known/api-catalog
+    status: 404
+    note: SPA shell returned with the 404 status; not a real document
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    note: SPA shell returned with the 404 status; not a real document
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: SPA shell returned with the 404 status; not a real document
+  - path: /.well-known/agent.json
+    status: 404
+    note: SPA shell returned with the 404 status; not a real document
+- host: harmonya.us.auth0.com
+  note: >-
+    Harmonya's Auth0 identity tenant. Named in the app.harmonya.com bundle as
+    VITE_DOMAIN=https://harmonya.us.auth0.com with VITE_AUDIENCE=https://app.harmonya.com.
+    Content is Auth0-generated for Harmonya's tenant, not authored by Harmonya.
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: harmonya-openid-configuration.json
+    content_type: application/json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: harmonya-oauth-authorization-server.json
+    content_type: application/json
+  - path: /.well-known/jwks.json
+    status: 200
+    note: JSON Web Key Set for the tenant; not saved (rotating key material)
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404

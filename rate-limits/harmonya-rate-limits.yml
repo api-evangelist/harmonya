@@ -1,0 +1,22 @@
+generated: '2026-08-22'
+method: searched
+source: >-
+  Contract discovery sweep of www.harmonya.com, app.harmonya.com and harmonya.us.auth0.com,
+  2026-08-22. No developer documentation exists to read limits from.
+limit_count: 0
+limits: []
+headers: []
+status_on_exhaustion: null
+note: >-
+  Harmonya documents no rate limits. There is no developer portal, no API reference and no
+  machine-readable contract on any Harmonya host, so there is nothing published that states a
+  quota, a window, a burst allowance, or the response headers the platform returns. The tenant
+  backend at https://app.harmonya.com is Auth0-gated and was not exercised — probing an
+  authenticated surface for 429 behaviour is out of bounds for this pipeline. Recorded as an
+  honest zero. No RateLimits pointer is wired in apis.yml, because the scorer credits the pointer
+  itself and Harmonya has published nothing to credit.
+evidence:
+- url: https://app.harmonya.com/openapi.json
+  status: 404
+- url: https://www.harmonya.com/llms.txt
+  status: 404
