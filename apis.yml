@@ -11,6 +11,17 @@ description: >-
   app.harmonya.com and as an enriched product feed into a customer's PIM, data lake and analytics
   stack. Harmonya publishes no public developer portal, API reference or machine-readable
   contract; access runs through a sales conversation and an Auth0-protected tenant.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://cdn.prod.website-files.com/62399ef94090aecdfc702bde/62399ef94090ae5993702bfb_Harmonya_primaryLogo_256.png
 url: https://raw.githubusercontent.com/api-evangelist/harmonya/refs/heads/main/apis.yml
 x-type: company
